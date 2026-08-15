@@ -116,6 +116,13 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:var(--focus)}
 .verdict + .verdict{margin-top:11px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .stats.two{grid-template-columns:repeat(2,1fr)}
+.stats.four{grid-template-columns:repeat(4,1fr);gap:10px}
+.stats.four .stat{padding:12px 11px}
+.stats.four .n{font-size:25px}
+@media(max-width:1100px){.stats.four{grid-template-columns:repeat(2,1fr)}}
+.stat .l .src{display:inline-block;margin-top:3px;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-600);opacity:.85}
+.pack .ribbon{position:absolute;top:9px;left:9px;font-size:8.5px;font-weight:800;letter-spacing:.10em;padding:3px 7px;border-radius:var(--r-pill);background:var(--navy-800);color:#fff;opacity:0;transition:.2s var(--ease)}
+.pack.rec .ribbon{opacity:1}
 @media(max-width:520px){.stats{grid-template-columns:1fr 1fr}}
 .stat{background:var(--surface-2);border:1px solid var(--line-soft);border-radius:var(--r-md);padding:14px 15px}
 .stat .n{font-size:29px;font-weight:750;line-height:1;letter-spacing:-.03em;color:var(--navy-800);font-variant-numeric:tabular-nums}
@@ -241,9 +248,10 @@ footer .fnote strong{color:var(--ink-500);font-weight:650}
     </div>
     <div class="telemetry" aria-label="Live telemetry">
       <div class="tchip"><span class="k"><span class="pulse"></span>Status</span><span class="v">Live</span></div>
-      <div class="tchip"><span class="k">City</span><span class="v" id="chipCity">New Delhi</span></div>
-      <div class="tchip"><span class="k">UV Index</span><span class="v hot" id="chipUvi">8.4</span></div>
-      <div class="tchip"><span class="k">Peak window</span><span class="v">11:00–15:00</span></div>
+      <div class="tchip"><span class="k">City · UV index</span><span class="v hot" id="chipCity">New Delhi · 8.4</span></div>
+      <div class="tchip"><span class="k">Skin type</span><span class="v" id="chipSkin">Fitzpatrick IV</span></div>
+      <div class="tchip"><span class="k">Blue-light load</span><span class="v" id="chipHev">9.5 h · high</span></div>
+      <div class="tchip"><span class="k">Applied dose</span><span class="v" id="chipDose">0.7 mg/cm²</span></div>
     </div>
   </div>
 </header>
@@ -314,10 +322,11 @@ footer .fnote strong{color:var(--ink-500);font-weight:650}
           <div class="meter-track"><div class="meter-fill" id="mFill" style="width:36%"></div></div>
           <div class="meter-legend"><span>SPF 1</span><span>SPF 25</span><span>SPF 50</span></div>
         </div>
-        <div class="stats" style="margin-top:20px">
-          <div class="stat"><div class="n red" id="sSpf">18</div><div class="l">SPF you receive from an SPF&nbsp;50 pack</div></div>
-          <div class="stat"><div class="n" id="sPack">129<span class="u">d</span></div><div class="l">Pack life at this dose — 45 d if dosed right</div></div>
-          <div class="stat"><div class="n gold" id="sGap">2.9<span class="u">×</span></div><div class="l">More product needed to hit the label claim</div></div>
+        <div class="stats four" style="margin-top:20px">
+          <div class="stat"><div class="n red" id="sSpf">18</div><div class="l">SPF delivered<br><span class="src">dose</span></div></div>
+          <div class="stat"><div class="n" id="sBare">18<span class="u">min</span></div><div class="l">Bare skin reddens in<br><span class="src">skin type + city</span></div></div>
+          <div class="stat"><div class="n teal" id="sProt">5.4<span class="u">h</span></div><div class="l">You are covered for<br><span class="src">all three</span></div></div>
+          <div class="stat"><div class="n gold" id="sApps">2</div><div class="l">Reapplications a day<br><span class="src">derived</span></div></div>
         </div>
         <h3 style="font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--ink-500);margin:22px 0 9px">Your Sun-Rx regimen</h3>
         <div class="rx" id="rxList"></div>
@@ -338,7 +347,7 @@ footer .fnote strong{color:var(--ink-500);font-weight:650}
 <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
   <div class="cols wide-right">
     <div class="card">
-      <div class="card-h"><span class="bar"></span><h2>UVA-PF retention under stress</h2><span class="aside">ISO 24443</span></div>
+      <div class="card-h"><span class="bar"></span><h2>UVA-PF retention under stress</h2><span class="aside" id="chartAside">ISO 24443 · New Delhi, UV 8.4</span></div>
       <div class="card-b">
         <svg class="chart" viewBox="0 0 640 320" role="img" aria-label="Filter degradation curves over four hours">
           <defs><linearGradient id="gD" x1="0" y1="0" x2="0" y2="1">
@@ -376,8 +385,8 @@ footer .fnote strong{color:var(--ink-500);font-weight:650}
           <div class="stat"><div class="n red" id="rC">31<span class="u">%</span></div><div class="l">Conventional blend UVA-PF retained</div></div>
         </div>
         <div style="margin-top:18px">
-          <div class="verdict good"><span class="ico">✓</span><span><strong>Derma-Defend™ holds.</strong> 94% UVA-PF still there at 240 minutes, under sweat and a 40 °C heat load. Above the therapeutic threshold for the whole working day.</span></div>
-          <div class="verdict bad"><span class="ico">!</span><span><strong>Conventional filters do not.</strong> Octinoxate-led blends drop below threshold at about 150 minutes. Protection ends before the working day does, and nothing on the pack tells you.</span></div>
+          <div class="verdict good"><span class="ico">✓</span><span id="readGood"></span></div>
+          <div class="verdict bad"><span class="ico">!</span><span id="readBad"></span></div>
           <div class="verdict warn"><span class="ico">?</span><span><strong>Why this matters commercially.</strong> India regulates sunscreens as cosmetics. There is no mandatory SPF test protocol, so claims go unpoliced. We publish ours per batch, behind a QR on the pack.</span></div>
         </div>
       </div>
@@ -387,7 +396,7 @@ footer .fnote strong{color:var(--ink-500);font-weight:650}
 
 <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
   <div class="card">
-    <div class="card-h"><span class="bar"></span><h2>Derma-Defend™ portfolio</h2><span class="aside">Tap a pack to add or remove it</span></div>
+    <div class="card-h"><span class="bar"></span><h2>Derma-Defend™ portfolio</h2><button class="btn btn-ghost" id="resetBtn" style="margin-left:auto">Reset to my Sun-Rx</button></div>
     <div class="card-b"><div class="packs" id="packs"></div></div>
   </div>
   <div class="cols" style="margin-top:20px">
@@ -493,75 +502,136 @@ function animateTo(el, target, decimals){
   requestAnimationFrame(step);
 }
 
-/* -------- panel 1 -------- */
+/* -------- model --------
+   Every control feeds the output:
+     dose   -> delivered SPF, pack life, meter
+     skin   -> bare-skin erythema time (minutes at UV index 1)
+     city   -> UV index, which divides that time and stresses the filters in tab 2
+     screen -> blue-light load, which pulls the tinted SKU into the regimen
+     concern-> which SKU sits in each slot
+   Protection window, reapply cadence and the basket all fall out of the combination.        */
+var SKIN_MIN = { III: 110, IV: 150, V: 210, VI: 300 };  // minutes to erythema at UV index 1
+var SKIN_LBL = { III: "Fitzpatrick III", IV: "Fitzpatrick IV", V: "Fitzpatrick V", VI: "Fitzpatrick VI" };
+var userPickedPacks = false;
+var recommended = [];
+
 function uvi(){ return parseFloat($("fCity").selectedOptions[0].dataset.uvi); }
+function hhmm(m){ m = Math.round(m); var h = Math.floor(m / 60) % 24, k = m % 60; return (h < 10 ? "0" : "") + h + ":" + (k < 10 ? "0" : "") + k; }
+function hevBand(h){ return h >= 9 ? "high" : h >= 6 ? "moderate" : "low"; }
+
+function model(){
+  var dose    = parseFloat($("fDose").value),
+      screen  = parseFloat($("fScreen").value),
+      concern = $("fConcern").value,
+      skin    = $("fSkin").value,
+      u       = uvi();
+
+  var spf    = Math.max(1, Math.round(1 + 49 * dose / 2));   // linear approx vs the 2.0 mg/cm2 ISO dose
+  var bare   = SKIN_MIN[skin] / u;                            // minutes before bare skin reddens
+  var prot   = bare * spf;                                    // minutes of real protection
+  var gap    = Math.max(120, Math.min(300, Math.round(prot / 30) * 30));
+  var apps   = Math.max(1, Math.ceil(600 / gap) - 1);         // reapplications across a 10 h day
+  var pack   = Math.round(45 * 2 / Math.max(dose, 0.3));
+  var tint   = screen >= 6 || concern === "melasma" || skin === "V" || skin === "VI";
+  var why    = concern === "melasma" ? "melasma is driven by visible light, not just UV"
+             : (skin === "V" || skin === "VI") ? "Fitzpatrick " + skin + " carries the highest PIH risk"
+             : "a " + screen.toFixed(1) + " h screen day is a real blue-light load";
+  return { dose:dose, screen:screen, concern:concern, skin:skin, u:u, spf:spf,
+           bare:bare, prot:prot, gap:gap, apps:apps, pack:pack, tint:tint, why:why };
+}
+
+/* -------- panel 1 -------- */
 function renderP1(){
-  var dose = parseFloat($("fDose").value),
-      screen = parseFloat($("fScreen").value),
-      concern = $("fConcern").value, u = uvi();
-
+  var r = model();
   paintRange($("fDose")); paintRange($("fScreen"));
-  $("vDose").innerHTML = dose.toFixed(1) + "<small>mg/cm²</small>";
-  $("vScreen").innerHTML = screen.toFixed(1) + "<small>h/day</small>";
-  $("chipCity").textContent = $("fCity").value;
-  $("chipUvi").textContent = u.toFixed(1);
 
-  var spf = Math.max(1, Math.round(1 + 49 * dose / 2));
-  var pct = Math.round(spf / 50 * 100);
-  animateTo($("sSpf"), spf);
-  animateTo($("sPack"), Math.round(45 * 2 / Math.max(dose, 0.3)));
-  animateTo($("sGap"), 2 / Math.max(dose, 0.3), 1);
+  $("vDose").innerHTML   = r.dose.toFixed(1) + "<small>mg/cm²</small>";
+  $("vScreen").innerHTML = r.screen.toFixed(1) + "<small>h/day</small>";
+  $("chipCity").textContent = $("fCity").value + " · " + r.u.toFixed(1);
+  $("chipSkin").textContent = SKIN_LBL[r.skin];
+  $("chipHev").textContent  = r.screen.toFixed(1) + " h · " + hevBand(r.screen);
+  $("chipDose").textContent = r.dose.toFixed(1) + " mg/cm²";
+
+  var pct = Math.round(r.spf / 50 * 100);
+  animateTo($("sSpf"), r.spf);
+  animateTo($("sBare"), Math.round(r.bare));
+  animateTo($("sApps"), r.apps);
   $("mFill").style.width = pct + "%";
   $("mFill").className = "meter-fill" + (pct >= 90 ? " hi" : pct >= 50 ? " mid" : "");
   animateTo($("mPct"), pct);
 
+  var pv = $("sProt"), unit = pv.querySelector(".u");
+  if (r.prot < 90){ unit.textContent = "min"; animateTo(pv, Math.round(r.prot)); }
+  else            { unit.textContent = "h";   animateTo(pv, r.prot / 60, 1); }
+
   var v = $("verdict"), ico = $("verdictIco"), txt = $("verdictTxt");
-  if (dose < 1.2){
+  if (r.dose < 1.2){
     v.className = "verdict bad"; ico.textContent = "!";
-    txt.innerHTML = "<strong>You are under-dosed.</strong> At " + dose.toFixed(1) + " mg/cm² you are getting about SPF " + spf +
-      " from an SPF 50 pack. The calibrated 1.0 ml dose pump fixes this without touching the formula.";
-  } else if (dose < 1.8){
+    txt.innerHTML = "<strong>You are under-dosed.</strong> At " + r.dose.toFixed(1) + " mg/cm² you get about SPF " + r.spf +
+      " from an SPF 50 pack, so cover runs out after " + (r.prot < 90 ? Math.round(r.prot) + " minutes" : (r.prot / 60).toFixed(1) + " hours") +
+      " in " + $("fCity").value + ". The calibrated 1.0 ml dose pump fixes this without touching the formula.";
+  } else if (r.dose < 1.8){
     v.className = "verdict warn"; ico.textContent = "~";
-    txt.innerHTML = "<strong>Close.</strong> About SPF " + spf + " delivered. One more pump stroke gets you to the number on the label.";
+    txt.innerHTML = "<strong>Close.</strong> About SPF " + r.spf + " delivered — roughly " +
+      (r.prot / 60).toFixed(1) + " hours of cover for " + SKIN_LBL[r.skin] + " skin at UV " + r.u.toFixed(1) +
+      ". One more pump stroke reaches the number on the label.";
   } else {
     v.className = "verdict good"; ico.textContent = "✓";
-    txt.innerHTML = "<strong>Correct dose.</strong> SPF " + spf + " delivered — the full labelled protection, exactly as tested.";
+    txt.innerHTML = "<strong>Correct dose.</strong> SPF " + r.spf + " delivered — the full labelled protection, and " +
+      (r.prot / 60).toFixed(1) + " hours of cover in " + $("fCity").value + " today.";
   }
 
-  var base = concern === "oily" ? byId.mc : byId.hf;
-  var mid  = concern === "sensitive" ? byId.am : byId.bs;
-  var eve  = concern === "melasma" ? byId.bt : byId.am;
-  var rows = [
-    ["07:30", base, "AM base layer — 2 pump strokes"],
-    ["13:30", mid,  concern === "sensitive" ? "Midday top-up — 3 mist passes" : "Reapply over makeup — 4 passes"],
-    ["17:30", eve,  concern === "melasma" ? "Evening photo-correction" : "Evening soothe and top-up"]
+  var base    = r.concern === "oily" ? byId.mc : byId.hf;
+  var reapply = r.concern === "sensitive" ? byId.am : byId.bs;
+  var reg = [
+    { t: 450, p: base, d: "AM base layer — 2 pump strokes at 1.0 ml" },
+    { t: 450 + r.gap, p: reapply, d: "Reapply — your cover lapses at " + hhmm(450 + r.gap) }
   ];
-  $("rxList").innerHTML = rows.map(function(r){
-    return '<div class="rx-row' + (r[1].gold ? " gold" : "") + '"><div class="rx-time">' + r[0] + '</div>' +
-      '<div class="rx-thumb"><img src="' + r[1].img + '" alt=""></div>' +
-      '<div class="rx-body"><div class="brand">' + r[1].brand + '</div><div class="nm">' + r[1].nm +
-      '</div><div class="do">' + r[2] + '</div></div></div>';
+  if (r.tint) reg.push({ t: 450 + 2 * r.gap, p: byId.bt, d: "Photo-correction — " + r.why });
+  else if (r.apps >= 2) reg.push({ t: 450 + 2 * r.gap, p: reapply, d: "Second reapplication — the day outlasts your cover" });
+
+  $("rxList").innerHTML = reg.map(function(x){
+    return '<div class="rx-row' + (x.p.gold ? " gold" : "") + '"><div class="rx-time">' + hhmm(x.t) + '</div>' +
+      '<div class="rx-thumb"><img src="' + x.p.img + '" alt=""></div>' +
+      '<div class="rx-body"><div class="brand">' + x.p.brand + '</div><div class="nm">' + x.p.nm +
+      '</div><div class="do">' + x.d + '</div></div></div>';
   }).join("");
 
-  var note;
-  if (concern === "melasma") note = "<strong>Melasma and dark patches.</strong> Iron oxides plus alpha-arbutin work against visible-light melanogenesis, not just UV — which is why the tint matters here.";
-  else if (concern === "oily") note = "<strong>Oily and breakout-prone.</strong> Matte-Control is the base layer; the stick reapplies over the day without pilling or adding shine.";
-  else if (concern === "sensitive") note = "<strong>Reactive skin.</strong> Madecassoside and bisabolol soothe on reapplication, so topping up does not trigger redness.";
-  else note = "<strong>Dry and barrier-compromised.</strong> Ceramide NP plus multi-weight hyaluronic acid hold the base layer for a full 24 hours.";
-  if (screen >= 8) note += " At " + screen.toFixed(1) + " h of screen time a day, blue-light exposure is meaningful — a tinted filter is worth it.";
-  $("rxNote").innerHTML = note;
+  $("rxNote").innerHTML =
+    "<strong>" + SKIN_LBL[r.skin] + " in " + $("fCity").value + ", UV " + r.u.toFixed(1) + ".</strong> " +
+    "Bare skin reddens in about " + Math.round(r.bare) + " minutes today. At the SPF " + r.spf +
+    " you are actually getting, that stretches to " + (r.prot < 90 ? Math.round(r.prot) + " minutes" : (r.prot / 60).toFixed(1) + " hours") +
+    " — so you need " + r.apps + (r.apps === 1 ? " reapplication" : " reapplications") + " to clear a 10-hour day. " +
+    "This pack lasts " + r.pack + " days at your dose, against 45 days dosed correctly. " +
+    (r.tint ? "A tinted filter is in your regimen because " + r.why + "." : "No tint needed at your blue-light load.");
+
+  recommended = reg.map(function(x){ return x.p.id; }).filter(function(v, i, a){ return a.indexOf(v) === i; });
+  if (!userPickedPacks){
+    PACKS.forEach(function(p){ sel[p.id] = recommended.indexOf(p.id) >= 0; });
+  }
+  renderPacks(); renderBasket();
+  updateChartAside();
+  if ($("p2").classList.contains("on")) drawChart(false);
 }
 ["fDose","fScreen","fConcern","fCity","fSkin"].forEach(function(i){
   $(i).addEventListener("input", renderP1);
   $(i).addEventListener("change", renderP1);
 });
 
-/* -------- panel 2 -------- */
+/* -------- panel 2 : the same city drives filter stress -------- */
 var X0 = 58, X1 = 620, Y0 = 252, Y1 = 44;
-function retD(t){ return 100 - 6 * (t / 240); }
-function retC(t){ return 100 - 69 * Math.pow(t / 240, 1.16); }
+function stress(){ return uvi() / 8.4; }
+function retD(t){ return Math.max(2, 100 - 6 * stress() * (t / 240)); }
+function retC(t){ return Math.max(2, 100 - 69 * stress() * Math.pow(t / 240, 1.16)); }
+function crossMin(){                      // when the conventional blend drops under 60% UVA-PF
+  var k = 40 / (69 * stress());
+  if (k >= 1) return null;
+  return Math.round(240 * Math.pow(k, 1 / 1.16) / 5) * 5;
+}
 function px(t){ return X0 + (t / 240) * (X1 - X0); }
 function py(v){ return Y0 - (v / 100) * (Y0 - Y1); }
+function updateChartAside(){ $("chartAside").textContent = "ISO 24443 · " + $("fCity").value + ", UV " + uvi().toFixed(1); }
+
 (function axes(){
   var g = "", yl = "", xl = "";
   [0,25,50,75,100].forEach(function(v){
@@ -577,6 +647,7 @@ function py(v){ return Y0 - (v / 100) * (Y0 - Y1); }
   $("threshLine").setAttribute("y1", ty); $("threshLine").setAttribute("y2", ty);
   $("threshTxt").setAttribute("x", X0 + 6); $("threshTxt").setAttribute("y", ty - 7);
 })();
+
 function drawChart(animate){
   var t = parseFloat($("fTime").value);
   paintRange($("fTime"));
@@ -609,21 +680,30 @@ function drawChart(animate){
   $("scrubLine").setAttribute("y1", Y1 - 8); $("scrubLine").setAttribute("y2", Y0);
   animateTo($("rD"), Math.round(retD(t)));
   animateTo($("rC"), Math.round(retC(t)));
+
+  var x = crossMin(), city = $("fCity").value;
+  $("readGood").innerHTML = "<strong>Derma-Defend™ holds.</strong> " + Math.round(retD(240)) +
+    "% UVA-PF still there at 240 minutes in " + city + ", under sweat and a 40 °C heat load. Above the therapeutic threshold all day.";
+  $("readBad").innerHTML = "<strong>Conventional filters do not.</strong> " +
+    (x === null ? "They start the day already marginal at this UV index."
+                : "Octinoxate-led blends drop below threshold at about " + x + " minutes in " + city + ", ending at " + Math.round(retC(240)) + "%.") +
+    " Protection stops before the working day does, and nothing on the pack tells you.";
 }
 $("fTime").addEventListener("input", function(){ drawChart(false); });
 
 /* -------- panel 3 -------- */
 function renderPacks(){
   $("packs").innerHTML = PACKS.map(function(p){
-    return '<button type="button" class="pack' + (p.gold ? " gold" : "") + '" data-id="' + p.id +
-      '" aria-pressed="' + (sel[p.id] ? "true" : "false") + '"><span class="tick-badge">✓</span>' +
+    var rec = recommended.indexOf(p.id) >= 0;
+    return '<button type="button" class="pack' + (p.gold ? " gold" : "") + (rec ? " rec" : "") + '" data-id="' + p.id +
+      '" aria-pressed="' + (sel[p.id] ? "true" : "false") + '"><span class="ribbon">FOR YOU</span><span class="tick-badge">✓</span>' +
       '<img src="' + p.img + '" alt="' + p.brand + ' ' + p.nm + '">' +
       '<span class="brand">' + p.brand + '</span><span class="nm">' + p.nm + '</span>' +
       '<span class="meta">' + p.size + ' · ₹' + p.mrp.toLocaleString("en-IN") + '</span>' +
       '<span class="role">' + p.role + '</span></button>';
   }).join("");
   [].slice.call(document.querySelectorAll(".pack")).forEach(function(n){
-    n.onclick = function(){ sel[n.dataset.id] = !sel[n.dataset.id]; renderPacks(); renderBasket(); };
+    n.onclick = function(){ userPickedPacks = true; sel[n.dataset.id] = !sel[n.dataset.id]; renderPacks(); renderBasket(); };
   });
 }
 function renderBasket(){
@@ -640,6 +720,10 @@ function renderBasket(){
   $("orderLine").textContent = n ? n + (n === 1 ? " SKU · ₹" : " SKUs · ₹") + total.toLocaleString("en-IN") : "Nothing selected yet";
   $("asideSku").textContent  = n + (n === 1 ? " SKU" : " SKUs");
 }
+$("resetBtn").onclick = function(){
+  userPickedPacks = false; renderP1();
+  toast("Basket reset to the regimen your inputs generated.");
+};
 
 /* -------- toast + modal -------- */
 var toastT;
@@ -654,7 +738,7 @@ $("certBtn").onclick  = function(){ $("certModal").showModal(); };
 $("certClose").onclick = function(){ $("certModal").close(); };
 $("certModal").addEventListener("click", function(e){ if (e.target === $("certModal")) $("certModal").close(); });
 
-renderP1(); renderPacks(); renderBasket(); drawChart(false);
+renderP1(); drawChart(false);
 </script>
 </body>
 </html>
