@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Science — Derma-Defend™ Prototype</title>
+<meta name="description" content="What is actually hitting your skin: ultraviolet, visible light and heat — which filters stop which, and how much protection survives four hours in an Indian summer."/>
+<link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap mast-inner">
+    <div>
+      <div class="logo"><div class="wordmark">GALDERMA</div><div class="rule"></div>
+        <div class="eyebrow">Derma-Defend™ Platform</div></div>
+      <h1>What is actually hitting your skin</h1>
+      <p class="lede">Sunlight is not one thing, and SPF only describes one part of it. Here is the whole spectrum, what each band does to Indian skin, which filters stop it — and how much of that protection is still working four hours later.</p>
+    </div>
+    <div class="telemetry">
+      <div class="tchip"><span class="k"><span class="pulse"></span>Status</span><span class="v">Live</span></div>
+      <div class="tchip"><span class="k">City · UV index</span><span class="v hot" id="chipCity">—</span></div>
+      <div class="tchip"><span class="k">Skin type</span><span class="v" id="chipSkin">—</span></div>
+      <div class="tchip"><span class="k">Visible light</span><span class="v" id="chipHev">—</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="navbar"><div class="wrap"><nav class="nav" aria-label="Sections">
+  <a href="index.html"><span class="num">1</span>Sun-Rx Diagnostic</a>
+  <a href="science.html"><span class="num">2</span>The Science</a>
+  <a href="portfolio.html"><span class="num">3</span>Range &amp; Replenishment</a>
+  <a href="clinicians.html"><span class="num">4</span>For Clinicians</a>
+  <a href="commercial.html"><span class="num">5</span>Commercial Case</a>
+</nav></div></div>
+
+<main id="main"><div class="wrap">
+
+<!-- ================================================ 1 · the spectrum ==== -->
+<div class="card">
+  <div class="card-h"><span class="bar"></span><h2>The spectrum, and what SPF actually covers</h2>
+    <span class="aside">SPF is a UVB number</span></div>
+  <div class="card-b">
+    <svg viewBox="0 0 1000 250" width="100%" role="img"
+         aria-label="Diagram of the light spectrum from 280 to 700 nanometres, showing UVB, UVA and visible light bands, what each does to skin, and which filters block them.">
+      <defs>
+        <linearGradient id="gUVB" x1="0" x2="1"><stop offset="0" stop-color="#3B2A78"/><stop offset="1" stop-color="#4A3A9E"/></linearGradient>
+        <linearGradient id="gUVA" x1="0" x2="1"><stop offset="0" stop-color="#4A3A9E"/><stop offset="1" stop-color="#6B3FA0"/></linearGradient>
+        <linearGradient id="gVIS" x1="0" x2="1">
+          <stop offset="0" stop-color="#6B3FA0"/><stop offset=".30" stop-color="#2B44A2"/>
+          <stop offset=".55" stop-color="#0E7A4F"/><stop offset=".80" stop-color="#D9A02B"/>
+          <stop offset="1" stop-color="#C42B2B"/></linearGradient>
+      </defs>
+
+      <!-- bands -->
+      <rect x="40"  y="34" width="150" height="46" rx="4" fill="url(#gUVB)"/>
+      <rect x="190" y="34" width="230" height="46" rx="0" fill="url(#gUVA)"/>
+      <rect x="420" y="34" width="540" height="46" rx="4" fill="url(#gVIS)"/>
+
+      <text x="115" y="63" text-anchor="middle" fill="#fff" font-family="Inter,Arial" font-size="15" font-weight="700">UVB</text>
+      <text x="305" y="63" text-anchor="middle" fill="#fff" font-family="Inter,Arial" font-size="15" font-weight="700">UVA</text>
+      <text x="560" y="63" text-anchor="middle" fill="#fff" font-family="Inter,Arial" font-size="15" font-weight="700">VISIBLE LIGHT</text>
+      <text x="880" y="63" text-anchor="middle" fill="#fff" font-family="Inter,Arial" font-size="13" font-weight="600" opacity=".9">including blue / HEV</text>
+
+      <text x="40"  y="100" fill="#8296A8" font-family="Inter,Arial" font-size="12">280 nm</text>
+      <text x="420" y="100" text-anchor="middle" fill="#8296A8" font-family="Inter,Arial" font-size="12">400 nm</text>
+      <text x="960" y="100" text-anchor="end" fill="#8296A8" font-family="Inter,Arial" font-size="12">700 nm</text>
+
+      <!-- what it does -->
+      <text x="115" y="132" text-anchor="middle" fill="#0F1A24" font-family="Inter,Arial" font-size="13" font-weight="700">Burning</text>
+      <text x="115" y="151" text-anchor="middle" fill="#5A6B7B" font-family="Inter,Arial" font-size="12">Sunburn, DNA damage</text>
+      <text x="305" y="132" text-anchor="middle" fill="#0F1A24" font-family="Inter,Arial" font-size="13" font-weight="700">Ageing &amp; pigment</text>
+      <text x="305" y="151" text-anchor="middle" fill="#5A6B7B" font-family="Inter,Arial" font-size="12">Penetrates glass and cloud</text>
+      <text x="690" y="132" text-anchor="middle" fill="#0F1A24" font-family="Inter,Arial" font-size="13" font-weight="700">Pigment, on brown skin specifically</text>
+      <text x="690" y="151" text-anchor="middle" fill="#5A6B7B" font-family="Inter,Arial" font-size="12">Screens, ceiling lights, windows — indoors, all day</text>
+
+      <!-- coverage brackets -->
+      <path d="M40 176 L40 186 L420 186 L420 176" fill="none" stroke="#2B44A2" stroke-width="2"/>
+      <text x="230" y="205" text-anchor="middle" fill="#1F337E" font-family="Inter,Arial" font-size="12.5" font-weight="700">Covered by any broad-spectrum SPF</text>
+      <text x="230" y="223" text-anchor="middle" fill="#5A6B7B" font-family="Inter,Arial" font-size="11.5">SPF measures UVB only; PA rating measures UVA</text>
+
+      <path d="M420 176 L420 186 L960 186 L960 176" fill="none" stroke="#6B3FA0" stroke-width="2"/>
+      <text x="690" y="205" text-anchor="middle" fill="#6B3FA0" font-family="Inter,Arial" font-size="12.5" font-weight="700">Covered only by iron oxides — a tint</text>
+      <text x="690" y="223" text-anchor="middle" fill="#5A6B7B" font-family="Inter,Arial" font-size="11.5">A clear sunscreen at SPF 100 still does nothing here</text>
+    </svg>
+
+    <div class="cols3" style="margin-top:20px">
+      <div class="verdict"><span class="ico">1</span><span><strong>SPF is a burning number.</strong> It measures how much longer skin takes to redden — a UVB effect. On Fitzpatrick IV–VI skin, burning is rarely the complaint. Pigment is.</span></div>
+      <div class="verdict"><span class="ico">2</span><span><strong>UVA is the ageing and pigment band.</strong> It passes through cloud and window glass, so a commute in a car is still an exposure. It is graded PA+ to PA++++, and Indian packs rarely publish the underlying number.</span></div>
+      <div class="verdict warn"><span class="ico">3</span><span><strong>Visible light is the blind spot.</strong> It is a documented driver of melasma in skin of colour, it is unblocked by every clear sunscreen on the market, and it is the reason a person who never goes outside can still be getting darker.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== 1b · what it looks like ==== -->
+<div class="card" style="margin-top:20px">
+  <div class="card-h"><span class="bar"></span><h2>What the category is actually being asked to solve</h2>
+    <span class="aside">Not sunburn</span></div>
+  <div class="card-b">
+    <div class="cols wide-right">
+      <figure style="margin:0">
+        <div class="hero-img" style="max-height:430px">
+          <img src="assets/img/face_portrait.png" style="height:430px;object-fit:cover;object-position:50% 22%" alt="Portrait of a woman with symmetrical brown patches across the cheeks."/>
+        </div>
+        <figcaption>Illustrative, AI-generated concept image — not a patient, not a clinical photograph, and not evidence of any product's effect.</figcaption>
+      </figure>
+      <div>
+        <p class="muted">More than 80% of Indian women in a four-metro study of 1,204 participants carried visible pigment spots. Sunburn barely registers as a complaint on Fitzpatrick IV–VI skin. Pigmentation is the felt problem, and it is the one that sends people to a dermatologist.</p>
+        <p class="muted">That changes what a good sunscreen has to do here. A product optimised for burn protection — a high SPF number, a clear finish, a beach positioning — is optimised for the wrong endpoint in this market. Pigment prevention needs long-UVA coverage that survives the whole day, and it needs visible-light coverage that a clear formula physically cannot provide.</p>
+        <div class="verdict warn" style="margin-top:15px"><span class="ico">!</span><span><strong>Which is why the SPF number stopped selling.</strong> Only 21% of Indian sun-care users rank the SPF figure a top purchase driver, while roughly 80% of packs on shelf claim SPF 50. A number every pack shouts, that does not address the problem people actually have, carries no information at all.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ 2 · degradation sim ===== -->
+<div class="cols wide-left" style="margin-top:20px">
+  <div class="card">
+    <div class="card-h"><span class="bar"></span><h2>UVA-PF retention under stress</h2>
+      <span class="aside" id="chartAside">—</span></div>
+    <div class="card-b">
+      <div id="chart"></div>
+      <div class="field" style="margin-top:14px">
+        <div class="rangerow"><span class="flabel">Minutes after application</span>
+          <span class="now" id="vTime">120 min</span></div>
+        <input type="range" id="fTime" min="0" max="240" step="15" value="120">
+        <div class="rangeends"><span>Applied</span><span>4 hours later</span></div>
+      </div>
+      <div class="stats two" style="margin-top:6px">
+        <div class="stat"><div class="n" id="rD">97<span class="u">%</span></div>
+          <div class="l">Derma-Defend™ still active<br><span class="src">photostable filter set</span></div></div>
+        <div class="stat"><div class="n red" id="rC">62<span class="u">%</span></div>
+          <div class="l">Conventional blend still active<br><span class="src">octinoxate-led</span></div></div>
+      </div>
+      <div class="verdict bad" style="margin-top:14px"><span class="ico">!</span><span id="chartNote"></span></div>
+      <p class="fine" style="margin-top:12px">These curves illustrate the published photostability behaviour of these filter classes under heat and sweat load. They are modelled, not laboratory results — we have not run the panel. The batch certificates on the clinician page show what we would publish once we have.</p>
+    </div>
+  </div>
+
+  <div class="stack">
+    <div class="card blue">
+      <div class="card-h"><span class="bar"></span><h2>The filter matrix</h2>
+        <span class="aside">Zero new regulatory filings</span></div>
+      <div class="card-b">
+        <p class="muted" style="margin-bottom:14px">Every filter below is already cleared and in-market in a Galderma India SKU. That is what makes this a 12–15 month launch rather than a 30-month one.</p>
+        <div class="certrow"><span class="k"><strong>Tinosorb S</strong><br><span class="fine">Broad-spectrum UVB + UVA, highly photostable</span></span><span class="v">UVB · UVA</span></div>
+        <div class="certrow"><span class="k"><strong>Tinosorb M</strong><br><span class="fine">Absorbs, reflects and scatters; stabilises the others</span></span><span class="v">UVB · UVA</span></div>
+        <div class="certrow"><span class="k"><strong>Uvinul A Plus</strong><br><span class="fine">Long-UVA specialist, photostable</span></span><span class="v">UVA I</span></div>
+        <div class="certrow"><span class="k"><strong>Ethylhexyl Triazone</strong><br><span class="fine">Highest UVB absorbance per unit weight in use</span></span><span class="v">UVB</span></div>
+        <div class="certrow"><span class="k"><strong>ZinGuard™ ZnO / TiO₂</strong><br><span class="fine">Mineral base for reactive and post-procedure skin</span></span><span class="v">UVB · UVA</span></div>
+        <div class="certrow"><span class="k"><strong>Iron oxides</strong> <span class="pill violet">the tint</span><br><span class="fine">The only cosmetically acceptable visible-light block</span></span><span class="v">Visible</span></div>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <div class="card-h"><span class="bar"></span><h2>Why this is hard to copy</h2></div>
+      <div class="card-b">
+        <p style="color:#BCC5EC;font-size:14.5px;line-height:1.6">A competitor can match this formula inside a year. What they cannot do quickly is publish a per-batch in-vivo ISO 24444 and ISO 24443 result, because that requires a standing testing programme, or walk into a dermatology clinic they do not already detail.</p>
+        <p style="color:#fff;font-size:15px;font-weight:600;margin-top:13px">The claim is infrastructure, not chemistry.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div></main>
+
+<footer><div class="wrap">
+  <strong>Concept prototype — Galderma Sunscreen Challenge, GRAD 3.0.</strong>
+  Filter behaviour described here reflects published characteristics of these filter classes; retention curves are modelled illustrations, not measured results. Visible-light effects on pigmentation in skin of colour are well documented in the dermatological literature; the weighting used in this tool is our own modelling assumption. Not medical advice.
+</div></footer>
+
+<div class="toast" id="toast"><span class="ok">✓</span><span id="toastTxt"></span></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+"use strict";
+
+/* Stress scales both curves by how punishing the city's UV index is. */
+function stress() { return uvi() / 8.4; }
+function retD(t) { return Math.max(2, 100 - 6  * stress() * (t / 240)); }
+function retC(t) { return Math.max(2, 100 - 69 * stress() * Math.pow(t / 240, 1.16)); }
+
+/* When does the conventional blend fall under a usable 60% of its UVA-PF? */
+function crossMin() {
+  for (var t = 0; t <= 240; t += 5) if (retC(t) < 60) return t;
+  return null;
+}
+
+var W = 620, H = 330, L = 52, R = 16, T = 16, B = 44;
+var X0 = L, X1 = W - R, Y0 = H - B, Y1 = T;
+function px(t) { return X0 + (t / 240) * (X1 - X0); }
+function py(v) { return Y0 - (v / 100) * (Y0 - Y1); }
+
+function drawChart() {
+  var t = parseFloat($("fTime").value);
+  var pts = [];
+  for (var i = 0; i <= 240; i += 10) pts.push(i);
+  var pathD = pts.map(function (x, i) { return (i ? "L" : "M") + px(x).toFixed(1) + " " + py(retD(x)).toFixed(1); }).join(" ");
+  var pathC = pts.map(function (x, i) { return (i ? "L" : "M") + px(x).toFixed(1) + " " + py(retC(x)).toFixed(1); }).join(" ");
+
+  var grid = "", labels = "";
+  [0, 25, 50, 75, 100].forEach(function (v) {
+    grid += '<line x1="' + X0 + '" y1="' + py(v) + '" x2="' + X1 + '" y2="' + py(v) + '" stroke="#E3EAF1" stroke-width="1"/>';
+    labels += '<text x="' + (X0 - 10) + '" y="' + (py(v) + 4) + '" text-anchor="end" fill="#8296A8" font-family="Inter,Arial" font-size="11">' + v + '%</text>';
+  });
+  [0, 60, 120, 180, 240].forEach(function (x) {
+    labels += '<text x="' + px(x) + '" y="' + (Y0 + 20) + '" text-anchor="middle" fill="#8296A8" font-family="Inter,Arial" font-size="11">' + x + '</text>';
+  });
+
+  $("chart").innerHTML =
+    '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" role="img" aria-label="Line chart of UVA-PF retention over four hours. Derma-Defend holds near ' +
+      Math.round(retD(240)) + ' per cent; a conventional octinoxate blend falls to ' + Math.round(retC(240)) + ' per cent.">' +
+    grid + labels +
+    '<line x1="' + X0 + '" y1="' + py(60) + '" x2="' + X1 + '" y2="' + py(60) + '" stroke="#D53434" stroke-width="1.4" stroke-dasharray="5 4" opacity=".65"/>' +
+    '<text x="' + (X1 - 4) + '" y="' + (py(60) - 7) + '" text-anchor="end" fill="#C42B2B" font-family="Inter,Arial" font-size="11" font-weight="600">usable threshold</text>' +
+    '<path d="' + pathC + '" fill="none" stroke="#D53434" stroke-width="3" stroke-linecap="round"/>' +
+    '<path d="' + pathD + '" fill="none" stroke="#1F337E" stroke-width="3" stroke-linecap="round"/>' +
+    '<line x1="' + px(t) + '" y1="' + Y1 + '" x2="' + px(t) + '" y2="' + Y0 + '" stroke="#8296A8" stroke-width="1.4" stroke-dasharray="4 4"/>' +
+    '<circle cx="' + px(t) + '" cy="' + py(retD(t)) + '" r="6" fill="#1F337E" stroke="#fff" stroke-width="2"/>' +
+    '<circle cx="' + px(t) + '" cy="' + py(retC(t)) + '" r="6" fill="#D53434" stroke="#fff" stroke-width="2"/>' +
+    '<text x="' + (X0 + (X1 - X0) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" fill="#5A6B7B" font-family="Inter,Arial" font-size="11.5">Minutes after application</text>' +
+    '</svg>' +
+    '<div class="splitkey" style="margin-top:4px">' +
+      '<span><i style="background:#1F337E"></i>Derma-Defend™ filter system</span>' +
+      '<span><i style="background:#D53434"></i>Conventional octinoxate-led blend</span></div>';
+
+  animateTo($("rD"), Math.round(retD(t)));
+  animateTo($("rC"), Math.round(retC(t)));
+  $("vTime").textContent = t + " min";
+  $("chartAside").textContent = "ISO 24443 · " + state.city + ", UV " + uvi().toFixed(1) + " · 40 °C, sweat-loaded";
+
+  var x = crossMin();
+  $("chartNote").innerHTML = x === null
+    ? "At this UV index the conventional blend starts the day already marginal — there is no point at which it is comfortably protective."
+    : "<strong>The 2 PM problem, in one number.</strong> In " + state.city + " the conventional blend drops below a usable 60% of its UVA-PF at about <strong>" +
+      x + " minutes</strong> — roughly " + (Math.round(x / 30) / 2).toFixed(1) + " hours after a 7:30 application, so shortly after lunch. Nothing on the pack tells the wearer this has happened.";
+}
+
+$("fTime").addEventListener("input", function () { paintRange(this); drawChart(); });
+paintRange($("fTime"));
+drawChart();
+</script>
+</body>
+</html>

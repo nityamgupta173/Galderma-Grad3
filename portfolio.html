@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Range &amp; Replenishment — Derma-Defend™ Prototype</title>
+<meta name="description" content="Six SKUs across Cetaphil and Biluma on one filter platform, matched to your skin concern, with the replenishment economics that follow from correct dosing."/>
+<link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap mast-inner">
+    <div>
+      <div class="logo"><div class="wordmark">GALDERMA</div><div class="rule"></div>
+        <div class="eyebrow">Derma-Defend™ Platform</div></div>
+      <h1>Six products, one filter platform</h1>
+      <p class="lede">Cetaphil recruits the category and carries volume. Biluma owns pigmentation and carries margin. One SKU is dispensed only in clinic. Tell the tool what you are managing and it will show you which of the six actually apply to you.</p>
+    </div>
+    <div class="telemetry">
+      <div class="tchip"><span class="k"><span class="pulse"></span>Status</span><span class="v">Live</span></div>
+      <div class="tchip"><span class="k">City · UV index</span><span class="v hot" id="chipCity">—</span></div>
+      <div class="tchip"><span class="k">Skin type</span><span class="v" id="chipSkin">—</span></div>
+      <div class="tchip"><span class="k">Applied dose</span><span class="v" id="chipDose">—</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="navbar"><div class="wrap"><nav class="nav" aria-label="Sections">
+  <a href="index.html"><span class="num">1</span>Sun-Rx Diagnostic</a>
+  <a href="science.html"><span class="num">2</span>The Science</a>
+  <a href="portfolio.html"><span class="num">3</span>Range &amp; Replenishment</a>
+  <a href="clinicians.html"><span class="num">4</span>For Clinicians</a>
+  <a href="commercial.html"><span class="num">5</span>Commercial Case</a>
+</nav></div></div>
+
+<main id="main"><div class="wrap">
+
+<!-- ============================================= condition matcher ====== -->
+<div class="card">
+  <div class="card-h"><span class="bar"></span><h2>Match the range to your skin</h2>
+    <span class="aside">Changes what is recommended below</span></div>
+  <div class="card-b">
+    <div class="cols wide-right">
+      <div class="field" style="margin-bottom:0">
+        <label for="fCondition">What you are managing</label>
+        <select id="fCondition"></select>
+        <span class="hint">This is the same setting as the diagnostic — change it in either place.</span>
+      </div>
+      <div>
+        <div class="verdict" id="condWhy"><span class="ico">i</span><span></span></div>
+        <div class="verdict warn" id="condAvoid" style="margin-top:11px"><span class="ico">✕</span><span></span></div>
+        <div id="condClinical"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================= the packs ==== -->
+<div class="card" style="margin-top:20px">
+  <div class="card-h"><span class="bar"></span><h2>Derma-Defend™ range</h2>
+    <span class="aside">Tap to add or remove · <span id="recCount">—</span> recommended for you</span></div>
+  <div class="card-b">
+    <div class="packs" id="packs"></div>
+    <div id="clinicNote"></div>
+    <p class="fine" style="margin-top:15px">Pack visuals are concept renders, not Galderma artwork. Prices are proposed MRPs for a case submission, not commercial pricing.</p>
+  </div>
+</div>
+
+<!-- ================================================= basket + economics = -->
+<div class="cols" style="margin-top:20px">
+  <div class="card">
+    <div class="card-h"><span class="bar"></span><h2>Your basket</h2>
+      <button class="btn btn-ghost" id="resetBtn" style="margin-left:auto;padding:7px 13px;font-size:12.5px">Reset to my Sun-Rx</button></div>
+    <div class="card-b">
+      <table>
+        <thead><tr><th>SKU</th><th class="r">Size</th><th class="r">MRP</th><th class="r">Refill</th></tr></thead>
+        <tbody id="basket"></tbody>
+      </table>
+      <div class="stats two" style="margin-top:18px">
+        <div class="stat"><div class="n" id="bTotal">₹0</div><div class="l">Basket value today</div></div>
+        <div class="stat"><div class="n green" id="bYear">₹0</div>
+          <div class="l">Annual value once dosing is correct<br><span class="src">at 1.0 ml per application</span></div></div>
+      </div>
+      <div class="verdict" style="margin-top:16px"><span class="ico">↻</span><span id="subLine"></span></div>
+    </div>
+  </div>
+
+  <div class="card gold">
+    <div class="card-h"><span class="bar"></span><h2>Why the dose pump changes the economics</h2></div>
+    <div class="card-b">
+      <div class="verdict bad"><span class="ico">!</span><span><strong>The problem.</strong> People apply about 0.7 mg/cm². SPF is certified at 2.0. So an SPF 50 pack delivers roughly SPF 18, and every brand in India is selling a number its own users never receive.</span></div>
+      <div class="verdict good"><span class="ico">✓</span><span><strong>The fix.</strong> A calibrated actuator dispenses exactly 1.0 ml per stroke — the validated face-and-neck dose. Two strokes. No mirror, no guessing, and no reformulation, so it costs tooling rather than R&amp;D.</span></div>
+      <div class="verdict warn"><span class="ico">↻</span><span><strong>The flywheel.</strong> Correct dosing cuts pack life from about 110 days to 45. Eight refills a year instead of three. We are aware the honest recommendation is also the commercially favourable one — that is the point, not a coincidence.</span></div>
+      <h3 class="sub">What it is worth</h3>
+      <table>
+        <thead><tr><th></th><th class="r">Without the pump</th><th class="r">With it</th></tr></thead>
+        <tbody>
+          <tr><td>Applied dose</td><td class="r">0.7 mg/cm²</td><td class="r">2.0 mg/cm²</td></tr>
+          <tr><td>Delivered SPF from an SPF 50 pack</td><td class="r">≈ 18</td><td class="r">50</td></tr>
+          <tr><td>50 ml pack lasts</td><td class="r">≈ 110 days</td><td class="r">45 days</td></tr>
+          <tr><td>Orders per customer per year</td><td class="r">2.0</td><td class="r">3.3</td></tr>
+          <tr><td>Incremental contribution per customer</td><td class="r">—</td><td class="r">₹1,146 a year</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="actionbar">
+  <div>
+    <div class="t">Desk Rescue Pack — at your office in 10 minutes</div>
+    <div class="s" id="orderLine">—</div>
+  </div>
+  <div class="spacer"></div>
+  <a class="btn btn-ghost" href="index.html">← Back to the diagnostic</a>
+  <button class="btn btn-primary" id="orderBtn">Order via quick commerce →</button>
+</div>
+</div></main>
+
+<footer><div class="wrap">
+  <strong>Concept prototype — Galderma Sunscreen Challenge, GRAD 3.0.</strong>
+  Product names, formulations, pack formats, pack visuals and prices are proposals, not commercial claims. Pack-life and replenishment figures follow from the dose arithmetic shown above. Not medical advice — for a persistent skin concern, see a dermatologist.
+</div></footer>
+
+<div class="toast" id="toast"><span class="ok">✓</span><span id="toastTxt"></span></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+"use strict";
+
+var sel = {}, userPicked = false, recommended = [];
+
+$("fCondition").innerHTML = CONDITIONS.map(function (c) {
+  return '<option value="' + c.id + '">' + c.label + '</option>';
+}).join("");
+$("fCondition").value = state.condition;
+
+function computeRecommended() {
+  var m = model();
+  recommended = regimen(m).map(function (r) { return r.p.id; });
+  return m;
+}
+
+function applyRecommendation() {
+  sel = {};
+  recommended.forEach(function (id) { if (!byId[id].clinic) sel[id] = true; });
+  userPicked = false;
+}
+
+function renderCondition(m) {
+  var c = m.cond;
+  $("condWhy").querySelector("span:last-child").innerHTML = "<strong>Why photoprotection matters here.</strong> " + c.why;
+  $("condAvoid").querySelector("span:last-child").innerHTML = "<strong>Worth avoiding.</strong> " + c.avoid;
+  $("condClinical").innerHTML = c.clinical
+    ? '<div class="verdict bad" style="margin-top:11px"><span class="ico">+</span><span><strong>See a dermatologist about this one.</strong> ' +
+      'Photoprotection supports treatment and prevents things getting worse. It is not itself a treatment for the condition, and nothing on this page should be read as one.</span></div>'
+    : "";
+}
+
+function renderPacks() {
+  $("packs").innerHTML = PACKS.map(function (p) {
+    var rec = recommended.indexOf(p.id) >= 0;
+    var on  = !!sel[p.id];
+    return '<button type="button" class="pack' + (p.gold ? " gold" : "") + (rec ? " rec" : "") +
+      (p.clinic ? " clinic" : "") + '" data-id="' + p.id + '" aria-pressed="' + (on ? "true" : "false") + '"' +
+      (p.clinic ? ' aria-describedby="clinicNote"' : '') + '>' +
+      '<span class="ribbon">FOR YOU</span><span class="tick">✓</span>' +
+      '<img src="' + p.img + '" alt="">' +
+      '<span><span class="brand">' + p.brand + (p.clinic ? ' · CLINIC ONLY' : '') + '</span>' +
+      '<span class="nm">' + p.nm + '</span>' +
+      '<span class="meta">' + p.size + ' · ' + inr(p.mrp) + ' · ' + p.days + '-day refill</span>' +
+      '<span class="role">' + p.role + '</span></span></button>';
+  }).join("");
+
+  $$(".pack").forEach(function (n) {
+    n.onclick = function () {
+      var p = byId[n.dataset.id];
+      if (p.clinic) {
+        toast("This one is dispensed at an aesthetics practice, not sold in retail. See the clinician page.");
+        return;
+      }
+      userPicked = true;
+      sel[p.id] = !sel[p.id];
+      renderPacks(); renderBasket();
+    };
+  });
+  $("recCount").textContent = recommended.length;
+}
+
+function renderBasket() {
+  var rows = "", total = 0, annual = 0, n = 0;
+  PACKS.forEach(function (p) {
+    if (!sel[p.id]) return;
+    n++; total += p.mrp; annual += p.mrp * (365 / p.days);
+    rows += "<tr><td>" + p.brand + " " + p.nm + "</td><td class='r'>" + p.size +
+            "</td><td class='r'>" + inr(p.mrp) + "</td><td class='r'>" + p.days + " d</td></tr>";
+  });
+  $("basket").innerHTML = rows ||
+    "<tr class='empty'><td colspan='4'>Nothing selected — tap a pack above to build a regimen.</td></tr>";
+  $("bTotal").textContent = inr(total);
+  $("bYear").textContent  = inr(annual);
+  $("orderLine").textContent = n
+    ? n + (n === 1 ? " product · " : " products · ") + inr(total)
+    : "Nothing selected yet";
+  var clinicRec = recommended.filter(function (id) { return byId[id].clinic; });
+  $("clinicNote").innerHTML = clinicRec.length
+    ? '<div class="verdict warn" style="margin-top:14px"><span class="ico">i</span><span><strong>One of your recommendations is clinic-only.</strong> ' +
+      byId[clinicRec[0]].nm + ' is dispensed at an aesthetics practice, so it is marked below but cannot be added to a retail basket. ' +
+      '<a href="clinicians.html">See the clinician page</a>.</span></div>'
+    : "";
+  $("subLine").innerHTML = n
+    ? "<strong>Auto-replenishment.</strong> Subscribed on the pack's own cycle rather than a calendar month, this basket reorders every " +
+      Math.min.apply(null, PACKS.filter(function (p) { return sel[p.id]; }).map(function (p) { return p.days; })) +
+      " days — which is what turns a subscription into a compliance mechanism instead of a discount."
+    : "<strong>Auto-replenishment.</strong> Pick a pack and the subscription cycle is set by how fast it actually empties at the correct dose.";
+}
+
+function renderAll() {
+  var m = computeRecommended();
+  if (!userPicked) applyRecommendation();
+  renderCondition(m);
+  renderPacks();
+  renderBasket();
+  paintTelemetry();
+  saveState(state);
+}
+
+$("fCondition").addEventListener("change", function () {
+  state.condition = this.value; userPicked = false; renderAll();
+});
+$("resetBtn").onclick = function () {
+  userPicked = false; renderAll();
+  toast("Basket reset to the regimen your diagnostic inputs generated.");
+};
+$("orderBtn").onclick = function () {
+  var n = PACKS.filter(function (p) { return sel[p.id]; }).length;
+  toast(n ? "Prototype — this would hand off to a Blinkit, Zepto or Instamart checkout."
+          : "Nothing in the basket yet.");
+};
+
+renderAll();
+</script>
+</body>
+</html>
