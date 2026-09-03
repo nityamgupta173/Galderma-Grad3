@@ -7,37 +7,37 @@
 
 var PACKS = [
   { id:"hf", brand:"CETAPHIL", nm:"Sun Ultra-Light Hydra-Fluid", size:"50 ml", mrp:999,  days:45,
-    img:"assets/img/pack_hydrafluid.png",   gold:false, clinic:false,
+    img:"pack_hydrafluid.png",   gold:false, clinic:false,
     role:"AM base layer for dry and sensitive skin",
     actives:"Tinosorb S + Uvinul A Plus + Ceramide NP",
     pack:"50 ml airless bottle, 1.0 ml calibrated dose pump" },
 
   { id:"mc", brand:"CETAPHIL", nm:"Sun Matte-Control Gel-Cream", size:"50 g", mrp:1049, days:45,
-    img:"assets/img/pack_mattecontrol.png", gold:false, clinic:false,
+    img:"pack_mattecontrol.png", gold:false, clinic:false,
     role:"AM base layer for oily and acne-prone skin",
     actives:"Tinosorb S/M + 2% niacinamide + silica",
     pack:"50 g airless tube, plus a 15 g pocket size" },
 
   { id:"bt", brand:"BILUMA",   nm:"Advanced Tinted Photo-Correct Fluid", size:"40 ml", mrp:1499, days:60,
-    img:"assets/img/pack_biluma_tinted.png", gold:true, clinic:false,
+    img:"pack_biluma_tinted.png", gold:true, clinic:false,
     role:"Active photo-correction — the only SKU that blocks visible light",
     actives:"Tinosorb M + ZinGuard™ ZnO + iron oxides + alpha-arbutin",
     pack:"40 ml airless dropper, three universal tints" },
 
   { id:"bs", brand:"BILUMA",   nm:"Melano-Block Sun Stick", size:"20 g", mrp:1199, days:90,
-    img:"assets/img/pack_biluma_stick.png", gold:true, clinic:false,
+    img:"pack_biluma_stick.png", gold:true, clinic:false,
     role:"Midday reapplication, over makeup, without a mirror",
     actives:"Solid filter matrix + 3-O-ethyl ascorbic acid",
     pack:"20 g twist-up with a four-pass dose mark" },
 
   { id:"am", brand:"CETAPHIL", nm:"Sun Aqua-Mist Invisible Shield", size:"75 ml", mrp:899, days:50,
-    img:"assets/img/pack_aquamist.png",     gold:false, clinic:false,
+    img:"pack_aquamist.png",     gold:false, clinic:false,
     role:"Reapplication for reactive and post-procedure skin",
     actives:"Tinosorb blend + madecassoside",
     pack:"75 ml non-aerosol micro-mist" },
 
   { id:"pp", brand:"CETAPHIL", nm:"Sun Post-Procedure Mineral Fluid", size:"30 ml", mrp:1349, days:40,
-    img:"assets/img/pack_postproc.png",     gold:false, clinic:true,
+    img:"pack_postproc.png",     gold:false, clinic:true,
     role:"Dispensed at the aesthetics practice — not listed in retail",
     actives:"100% mineral ZnO / TiO₂, fragrance-free, lightly tinted",
     pack:"30 ml airless dropper" }

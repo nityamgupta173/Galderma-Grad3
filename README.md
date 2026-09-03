@@ -37,11 +37,14 @@ Opening `index.html` straight off the filesystem also works.
 
 ## How it is put together
 
+Every file sits in one flat folder — no subdirectories, so nothing can break
+by being moved or unzipped differently.
+
 ```
-assets/style.css   design tokens and every component
-assets/data.js     the six SKUs, eight skin conditions, cities, batches, funnel
-assets/app.js      shared state and the one model every page calls
-assets/img/        pack renders and photography
+style.css   design tokens and every component
+data.js     the six SKUs, eight skin conditions, cities, batches, funnel
+app.js      shared state and the one model every page calls
+*.png       pack renders and photography, referenced by bare filename
 ```
 
 There is a **single model** in `app.js`. All six inputs feed it, and each one changes
